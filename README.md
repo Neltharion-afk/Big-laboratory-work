@@ -135,15 +135,24 @@ EDGE-BR
 
 <img width="474" height="195" alt="image" src="https://github.com/user-attachments/assets/a9422983-a1a4-452d-848d-3cc74caf65cf" />
 
-Вывод ```show access-list``` на ```CORE-1.```, к сожалению на CPT access-list работает не совсем корректно и не отображает ```match(es)``` корректно.
+Вывод ```show access-list``` на ```CORE-1.```, к сожалению на CPT access-list работает не совсем корректно и не отображает ```match(es)``` корректно. А так же ```access-group``` на саб интерфейсе не отображается, но отрабатывает что будет видно дальше, но после ```reload``` CORE-1 или CORE-2 группы сбрасываются с саб интерфейсов.В моем случае было прописано:
+```
+configure terminal
+interface vlan 20
+ ip access-group ACL_SALES out
+interface vlan 30
+ ip access-group ACL_IT out
+interface vlan 60
+ ip access-group ACL_GUEST out
+ ```
 
 <img width="408" height="146" alt="image" src="https://github.com/user-attachments/assets/7c0330bc-8a47-4276-83cc-52df8160c6f0" />
 
-Пинг с Sales на IT ```Destination host unreachable```.
+Пинг с Sales на IT ```Destination host unreachable``` группа отрабатывает.
 
 <img width="409" height="145" alt="image" src="https://github.com/user-attachments/assets/4f1c1b37-4df1-4191-afe1-e0b52ebf5aeb" />
 
-Пинг с Guest на Sales ```Destination host unreachable```.
+Пинг с Guest на Sales ```Destination host unreachable``` группа отрабатывает.
 
 ### Сервисы
 
@@ -205,6 +214,43 @@ IP-телефоны. Адреса из ```VLAN 200``` (10.0.200.x)
 <img width="398" height="170" alt="image" src="https://github.com/user-attachments/assets/fcf99c4f-5c75-4168-a038-ec267a9c2054" />
 
 Пинг с ПК Sales на ```203.0.113.2```. Успешный выход в Интернет
+
+## Конфигурации устройств
+
+[CORE-1](CORE-1)
+[CORE-2](CORE-2)
+[EDGE-HQ](EDGE-HQ)
+[EDGE-BR](EDGE-BR)
+[ACC-1](ACC-1)
+[ACC-2](ACC-2)
+[BR-WS](BR-SW)
+[SP-1](SP-1)
+[SP-2](SP-2)
+
+## Тестирование
+
+Все технологии протестированы:
+
+- HSRP: отказ ядра — потеря ≤ 4 пакетов
+- OSPF: соседи FULL, маршруты через GRE
+- ACL: разграничение доступа между отделами
+- DHCP: централизованная выдача адресов
+- NTP: все устройства синхронизированы
+- WLAN: 2 SSID, гостевая изоляция
+
+## Ограничения CPT
+
+- NAT hairpin (loopback) не работает
+- QoS только IP Precedence (нет DSCP)
+- ACL на SVI требуют точной настройки access-group без перезагрузки оборудования
+
+## Автор
+
+Любимов Николай
+
+
+
+
 
 
 
