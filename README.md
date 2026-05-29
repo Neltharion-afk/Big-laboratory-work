@@ -53,6 +53,7 @@
 
 Вывод ```show standby brief``` на ```CORE-1``` и ```CORE-2```. Видно распределение ```Active/Standby``` по ```VLAN```
 
+---
 #### STP
 
 CORE-1
@@ -65,12 +66,14 @@ CORE-2
 
 Вывод ```show spanning-tree vlan 20``` и ```vlan 30```. ```CORE-1``` root для Sales, ```CORE-2``` root для IT
 
+---
 #### ETHERCHANNEL
 
 <img width="417" height="235" alt="image" src="https://github.com/user-attachments/assets/51e1f764-b12e-4060-ba10-b76c3d844446" /> <img width="419" height="235" alt="image" src="https://github.com/user-attachments/assets/50b8c7d7-87c4-423b-bd95-360deb13b8ef" />
 
 Вывод ```show etherchannel summary```. ```Po5(SU)```, оба порта в статусе ```P```
 
+---
 #### HSRP-FAILOVAER
 
 <img width="915" height="345" alt="image" src="https://github.com/user-attachments/assets/9776fa48-3ded-4a9a-b0d5-8e91311f5293" />
@@ -79,6 +82,7 @@ CORE-2
 
 Пинг 10.0.20.1 с ПК Sales при отключении CORE-1. Потеря 3 пакетов, затем восстановление, при включении так же потеря 2-ух пакетов, потом восстановление через CORE-1
 
+---
 ### Маршрутизация и филиал
 
 #### OSPF-NEIGHBORS
@@ -87,6 +91,7 @@ CORE-2
 
 Вывод ```show ip ospf``` neighbor на ```EDGE-HQ```. Соседи ```1.1.1.1```, ```2.2.2.2```, ```4.4.4.4``` в FULL
 
+---
 #### GRE-TUNNEL
 
 EDGE-HQ
@@ -99,18 +104,21 @@ EDGE-BR
 
 Вывод ```show interface tunnel 0``` на ```EDGE-HQ``` и ```EDGE-BR```. Статус ```up/up```.
 
+---
 #### OSPF-ROUTES
 
 <img width="1170" height="207" alt="image" src="https://github.com/user-attachments/assets/2ebe3910-b62b-4b74-a480-2a676aa5bed9" />
 
 Вывод ```show ip route ospf``` на ```CORE-1``` и ```EDGE-BR```. Маршруты через ```GRE```
 
+---
 #### TRACERT-BRANCH
 
 <img width="383" height="131" alt="image" src="https://github.com/user-attachments/assets/002b08aa-fd9d-43e3-b096-7bd945b3cf0f" />
 
 Трассировка с ПК филиала до ```SRV-DHCP```. Путь через туннель за 4 хопа
 
+---
 ### Безопасность
 
 #### PORT-SECURITY
@@ -119,18 +127,21 @@ EDGE-BR
 
 Вывод ```show port-security``` на ACC-1. 6 портов защищены, Sticky-адреса привязаны ко всем портам, ```violation``` ```shutdown```
 
+---
 #### DHCP-SNOOPING
 
 <img width="387" height="205" alt="image" src="https://github.com/user-attachments/assets/277a50ab-3ed2-4aee-9d76-1f1e6bf0e82f" />
 
 Вывод ```show ip dhcp snooping``` на ```ACC-1```. ```Enabled```, доверенные порты: ```Gi0/1```, ```Gi0/2``` (аплинки), ```Fa0/20``` (DHCP-сервер)
 
+---
 #### DAI
 
 <img width="528" height="520" alt="image" src="https://github.com/user-attachments/assets/74bc9f9c-9286-432f-b074-feb40412de14" />
 
 Вывод ```show ip arp inspection``` на ```ACC-1```. ```Active``` на ```VLAN 10,20,30,60```
 
+---
 #### ACL-COUNTERS
 
 <img width="474" height="195" alt="image" src="https://github.com/user-attachments/assets/a9422983-a1a4-452d-848d-3cc74caf65cf" />
@@ -154,6 +165,7 @@ interface vlan 60
 
 Пинг с Guest на Sales ```Destination host unreachable``` группа отрабатывает.
 
+---
 ### Сервисы
 
 #### DHCP-POOLS
@@ -162,18 +174,21 @@ interface vlan 60
 
 Окно ```Services DHCP``` на SRV-DHCP. 6 пулов для всех ```VLAN```.
 
+---
 #### NTP-STATUS
 
 <img width="609" height="106" alt="image" src="https://github.com/user-attachments/assets/5ce47351-056c-405b-9d1f-22df4df7bf90" />
 
 Вывод ```show ntp status``` на ACC-1. ```Synchronized, stratum 2```.
 
+---
 #### SYSLOG
 
 <img width="1434" height="442" alt="image" src="https://github.com/user-attachments/assets/81a2c04e-ad7b-4e65-9197-a5fd8b0f9556" />
 
 Окно ```Services SYSLOG``` на SRV-DHCP. Логи отключения и включения интерфейсов.
 
+---
 ### WLAN и QoS
 
 #### WLAN-CORP
@@ -182,18 +197,21 @@ interface vlan 60
 
 ```ipconfig``` на Laptop-CORP. ```IP``` из ```VLAN 20``` (10.0.20.x)
 
+---
 #### WLAN-GUEST
 
 <img width="437" height="274" alt="image" src="https://github.com/user-attachments/assets/3e8bcdb3-d61d-4761-84fa-c3741d3259c9" />
 
 ```ipconfig``` на Laptop-Guest. ```IP``` из ```VLAN 60``` (192.168.100.x)
 
+---
 #### QOS-POLICY
 
 <img width="361" height="130" alt="image" src="https://github.com/user-attachments/assets/3cfe4571-0317-4952-8061-678907acbf9d" />
 
 ```ipconfig``` на Laptop-Guest. ```IP``` из ```VLAN 60``` (192.168.100.x)
 
+---
 #### PHONES
 
 <img width="500" height="158" alt="image" src="https://github.com/user-attachments/assets/1b5dd08d-e985-487c-bd22-0148cb05e0ff" />
@@ -201,6 +219,7 @@ interface vlan 60
 
 IP-телефоны. Адреса из ```VLAN 200``` (10.0.200.x)
 
+---
 ### NAT и Интернет
 
 #### NAT-TRANSLATIONS
@@ -209,12 +228,14 @@ IP-телефоны. Адреса из ```VLAN 200``` (10.0.200.x)
 
 Вывод ```show ip nat translations``` на EDGE-HQ статический ```NAT``` для веб-сервера DMZ внутренний ```172.16.0.10``` -> внешний ```203.0.113.10``` порты 80 (HTTP) и 443 (HTTPS) опубликованы
 
+---
 #### PING-INTERNET
 
 <img width="398" height="170" alt="image" src="https://github.com/user-attachments/assets/fcf99c4f-5c75-4168-a038-ec267a9c2054" />
 
 Пинг с ПК Sales на ```203.0.113.2```. Успешный выход в Интернет
 
+---
 ## Конфигурации устройств
 
 [CORE-1](CORE-1)
