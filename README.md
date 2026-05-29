@@ -209,7 +209,7 @@ interface vlan 60
 
 <img width="361" height="130" alt="image" src="https://github.com/user-attachments/assets/3cfe4571-0317-4952-8061-678907acbf9d" />
 
-```ipconfig``` на Laptop-Guest. ```IP``` из ```VLAN 60``` (192.168.100.x)
+Вывод ```show policy-map``` на CORE-1. ```VOICE priority 30%```, ```SIGNALING 5%```
 
 ---
 #### PHONES
@@ -217,7 +217,7 @@ interface vlan 60
 <img width="500" height="158" alt="image" src="https://github.com/user-attachments/assets/1b5dd08d-e985-487c-bd22-0148cb05e0ff" />
 <img width="501" height="159" alt="image" src="https://github.com/user-attachments/assets/a9aa8068-7c86-4443-adc6-897113702ad0" />
 
-IP-телефоны. Адреса из ```VLAN 200``` (10.0.200.x)
+IP-телефоны в ACC-1 и ACC-2. Адреса из VLAN 200 (10.0.200.x). Voice VLAN работает.
 
 ---
 ### NAT и Интернет
