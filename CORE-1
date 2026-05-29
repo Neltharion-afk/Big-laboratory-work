@@ -1,0 +1,160 @@
+ACC-1#sh run
+Building configuration...
+
+Current configuration : 3232 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname ACC-1
+!
+enable secret 5 $1$mERr$RldxcCZEZsTFTETUyRaA50
+!
+!
+!
+no ip domain-lookup
+ip domain-name netcorp.local
+!
+username admin secret 5 $1$mERr$RldxcCZEZsTFTETUyRaA50
+!
+ip arp inspection vlan 10,20,30,60
+!
+ip dhcp snooping vlan 10,20,30,40,60,200
+ip dhcp snooping
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security mac-address sticky 0030.A35D.8823
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ switchport access vlan 20
+ switchport mode access
+ switchport voice vlan 200
+ switchport port-security
+ switchport port-security maximum 5
+ switchport port-security mac-address sticky 
+ switchport port-security mac-address sticky 000A.41E5.5192
+ switchport port-security mac-address sticky 000A.F3BA.50DC
+ spanning-tree portfast
+!
+interface FastEthernet0/3
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security mac-address sticky 0001.9780.1A6D
+ spanning-tree portfast
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+ switchport access vlan 20
+ switchport trunk native vlan 60
+ switchport trunk allowed vlan 20,60
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 3
+ switchport port-security violation restrict 
+ spanning-tree portfast
+!
+interface FastEthernet0/11
+ switchport access vlan 60
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 3
+ switchport port-security violation restrict 
+ spanning-tree portfast
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+ switchport access vlan 40
+ ip arp inspection trust
+ ip dhcp snooping trust
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security mac-address sticky 00E0.8FC1.8013
+ spanning-tree portfast
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+ switchport trunk allowed vlan 10,20,30,40,50,60,100,200
+ ip arp inspection trust
+ ip dhcp snooping trust
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+ switchport trunk allowed vlan 10,20,30,40,50,60,100,200
+ ip arp inspection trust
+ ip dhcp snooping trust
+ switchport mode trunk
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan100
+ ip address 10.0.100.10 255.255.255.0
+!
+ip default-gateway 10.0.100.1
+!
+logging trap debugging
+logging 10.0.40.10
+!
+!
+!
+line con 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+!
+ntp server 10.0.40.10
+!
+end
